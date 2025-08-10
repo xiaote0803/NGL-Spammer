@@ -17,8 +17,6 @@ proxy1:port
 proxy2:port
 ```
 
-3. Edit `MESSAGES` list in `main.py` to add your custom messages
-
 ## Configuration
 
 - `USER_AGENTS`: List of user agents
