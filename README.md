@@ -1,6 +1,6 @@
 ## Features
 
-- NGL Rate Limit Bypass ( If not working, it's your proxy's problem. )
+- NGL Rate Limit Bypass
 
 ## Setup
 
