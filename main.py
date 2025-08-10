@@ -85,9 +85,6 @@ def proxy_worker(proxy, username, messages, counter, stop_event):
                 backoff = min(max_backoff, max(1.0, (backoff * 1.5) or 1.0) + random.uniform(0.2, 0.8))
                 continue
             elif status != 200:
-                with COUNTER_LOCK:
-                    if proxy not in INVALID_PROXIES:
-                        INVALID_PROXIES.append(proxy)
                 print(f"\033[0m\033[1;31m[Error]\033[0m \033[0;31m{status} | drop {proxy}")
                 break
             else:
@@ -101,26 +98,26 @@ def proxy_worker(proxy, username, messages, counter, stop_event):
             consecutive_timeouts += 1
             backoff = min(max_backoff, max(0.5, (backoff * 1.3) or 0.7) + random.uniform(0.1, 0.4))
             if consecutive_timeouts >= max_timeouts_before_drop:
-                with COUNTER_LOCK:
-                    if proxy not in INVALID_PROXIES:
-                        INVALID_PROXIES.append(proxy)
-                print(f"\033[0m\033[1;31m[Error]\033[0m \033[0;31mTimeout x{consecutive_timeouts} | drop {proxy}")
                 break
             continue
-        except (requests.exceptions.ProxyError,
-                requests.exceptions.SSLError,
-                requests.exceptions.ConnectionError) as e:
+
+        except requests.exceptions.ProxyError:
             with COUNTER_LOCK:
                 if proxy not in INVALID_PROXIES:
                     INVALID_PROXIES.append(proxy)
-            print(f"\033[0m\033[1;31m[Error]\033[0m \033[0;31mProxy fail | {proxy} | {type(e).__name__}")
             break
-        except Exception as e:
+
+        except (requests.exceptions.SSLError,
+                requests.exceptions.ConnectionError):
             with COUNTER_LOCK:
                 if proxy not in INVALID_PROXIES:
                     INVALID_PROXIES.append(proxy)
+            break
+
+        except Exception as e:
             print(f"\033[0m\033[1;31m[Error]\033[0m \033[0;31mUnexpected | {proxy} | {type(e).__name__}")
             break
+
 
 def send_messages(username, messages, proxies):
     counter = [0]
