@@ -7,17 +7,10 @@
 1. Install required packages:
 
 ```bash
-pip install requests urllib3
-```
-
-2. Create a `proxy.txt` file with HTTP/HTTPS proxies:
-
-```
-proxy:port
-proxy:port
+pip install requests
 ```
 
 ## Configuration
 
-- `USER_AGENTS`: List of user agents
-- `MESSAGES`: List of messages
+- `message.txt`: List of messages
+- `proxy.txt`: List of proxies 
