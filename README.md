@@ -4,10 +4,9 @@ A Python tool to send anonymous messages to NGL.link using proxies.
 
 ## Features
 
-- Multi-threaded sending with proxy rotation
+- Multi-threaded sending with proxy
 - Rate limit bypass
 - User agent rotation
-- Colored console output
 
 ## Requirements
 
