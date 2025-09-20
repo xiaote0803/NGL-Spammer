@@ -1,6 +1,9 @@
 # NGL-Spammer
 
-A Python tool to send anonymous messages to NGL.link using proxies.
+## Support
+
+Join our Discord server for support and updates: [Discord Invite](https://discord.gg/ZBXepTXj)
+A Python tool to spam messages to NGL.link using proxies.
 
 ## Features
 
@@ -21,11 +24,8 @@ pip install requests urllib3
 
 ## Configuration
 
-Prepare these files in the same directory:
-
-- `message.txt`: Messages to send (one per line)
-- `proxy.txt`: Proxies in `ip:port` format
-- `user_agents.txt`: User agent strings
+- **`message.txt`**: Contains messages to send, one message per line
+- **`proxy.txt`**: Contains proxy servers in `ip:port` format, one proxy per line  
 
 ## Proxy Collection
 
@@ -36,8 +36,6 @@ You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-S
 ```bash
 python main.py
 ```
-
-Enter the target username when prompted.
 
 ## Disclaimer
 
