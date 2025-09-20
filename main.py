@@ -7,15 +7,19 @@ from typing import List, Dict, Iterable
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+MAX_TIMEOUTS_BEFORE_DROP = 3
+TIMEOUT_SLEEP = 10
+REQUEST_TIMEOUT = (3, 7)
+DEVICE_ID_LENGTH = 42
+URL = "https://ngl.link/api/submit"
+
 PRINT_LOCK = threading.Lock()
 COUNTER_LOCK = threading.Lock()
-INVALID_PROXIES: List[str] = []
 
+INVALID_PROXIES: List[str] = []
 USER_AGENTS: List[str] = []
 MESSAGES: List[str] = []
 PROXIES: List[str] = []
-
-URL = "https://ngl.link/api/submit"
 
 
 def print_sync(msg: str) -> None:
@@ -72,21 +76,20 @@ def proxy_worker(proxy: str, username: str, messages: List[str], user_agents: Li
     session = requests.Session()
     px = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
     consecutive_timeouts = 0
-    max_timeouts_before_drop = 3
     while not stop_event.is_set():
         headers = build_headers(username, user_agents)
         data = {
             "username": username,
             "question": random.choice(messages),
-            "deviceId": "".join(random.choices("0123456789abcdef", k=42)),
+            "deviceId": "".join(random.choices("0123456789abcdef", k=DEVICE_ID_LENGTH)),
             "gameSlug": "",
             "referrer": "",
         }
         try:
-            resp = session.post(URL, headers=headers, data=data, proxies=px, timeout=(3, 7))
+            resp = session.post(URL, headers=headers, data=data, proxies=px, timeout=REQUEST_TIMEOUT)
             status = resp.status_code
             if status == 429:
-                time.sleep(10)
+                time.sleep(TIMEOUT_SLEEP)
                 continue
             if 500 <= status < 600:
                 continue
@@ -99,7 +102,7 @@ def proxy_worker(proxy: str, username: str, messages: List[str], user_agents: Li
                 print_colored("SUCCESS", f"Message Total: {counter[0]}")
         except requests.exceptions.Timeout:
             consecutive_timeouts += 1
-            if consecutive_timeouts >= max_timeouts_before_drop:
+            if consecutive_timeouts >= MAX_TIMEOUTS_BEFORE_DROP:
                 break
             continue
         except (requests.exceptions.ProxyError, requests.exceptions.SSLError, requests.exceptions.ConnectionError):
