@@ -1,16 +1,45 @@
+# NGL-Spammer
+
+A Python tool to send anonymous messages to NGL.link using proxies.
+
 ## Features
 
-- NGL Rate Limit Bypass
+- Multi-threaded sending with proxy rotation
+- Rate limit bypass
+- User agent rotation
+- Colored console output
 
-## Setup
+## Requirements
 
-1. Install required packages:
+- Python 3.6+
+- `requests` and `urllib3` libraries
+
+## Installation
 
 ```bash
-pip install requests
+pip install requests urllib3
 ```
 
 ## Configuration
 
-- `message.txt`: List of messages
-- `proxy.txt`: List of proxies 
+Prepare these files in the same directory:
+
+- `message.txt`: Messages to send (one per line)
+- `proxy.txt`: Proxies in `ip:port` format
+- `user_agents.txt`: User agent strings
+
+## Proxy Collection
+
+You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to collect fresh proxies for `proxy.txt`.
+
+## Usage
+
+```bash
+python main.py
+```
+
+Enter the target username when prompted.
+
+## Disclaimer
+
+Use responsibly. Sending unsolicited messages may violate terms of service.
