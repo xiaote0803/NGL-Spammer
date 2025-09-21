@@ -7,10 +7,7 @@ from typing import List, Dict, Iterable
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-MAX_TIMEOUTS_BEFORE_DROP = 3
 TIMEOUT_SLEEP = 10
-REQUEST_TIMEOUT = (3, 7)
-DEVICE_ID_LENGTH = 42
 URL = "https://ngl.link/api/submit"
 
 PRINT_LOCK = threading.Lock()
@@ -75,36 +72,29 @@ def build_headers(username: str, user_agents: Iterable[str]) -> Dict[str, str]:
 def proxy_worker(proxy: str, username: str, messages: List[str], user_agents: List[str], counter: List[int], stop_event: threading.Event) -> None:
     session = requests.Session()
     px = {"http": f"http://{proxy}", "https": f"http://{proxy}"}
-    consecutive_timeouts = 0
     while not stop_event.is_set():
         headers = build_headers(username, user_agents)
         data = {
             "username": username,
             "question": random.choice(messages),
-            "deviceId": "".join(random.choices("0123456789abcdef", k=DEVICE_ID_LENGTH)),
+            "deviceId": "".join(random.choices("0123456789abcdef", k=42)),
             "gameSlug": "",
             "referrer": "",
         }
         try:
-            resp = session.post(URL, headers=headers, data=data, proxies=px, timeout=REQUEST_TIMEOUT)
+            resp = session.post(URL, headers=headers, data=data, proxies=px, timeout=(2, 5))
             status = resp.status_code
             if status == 429:
                 time.sleep(TIMEOUT_SLEEP)
                 continue
-            if 500 <= status < 600:
-                continue
             if status != 200:
                 print_colored("ERROR", f"{status} | drop {proxy}")
                 break
-            consecutive_timeouts = 0
             with COUNTER_LOCK:
                 counter[0] += 1
                 print_colored("SUCCESS", f"Message Total: {counter[0]}")
         except requests.exceptions.Timeout:
-            consecutive_timeouts += 1
-            if consecutive_timeouts >= MAX_TIMEOUTS_BEFORE_DROP:
-                break
-            continue
+            break
         except (requests.exceptions.ProxyError, requests.exceptions.SSLError, requests.exceptions.ConnectionError):
             with COUNTER_LOCK:
                 if proxy not in INVALID_PROXIES:
