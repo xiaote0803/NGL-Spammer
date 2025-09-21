@@ -1,4 +1,4 @@
-# NGL-Spammer
+# NGL Spammer
 
 ## Support
 
