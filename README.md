@@ -2,7 +2,7 @@
 
 ## Support
 
-Join our Discord server for support and updates: [Discord Link](https://discord.gg/ZBXepTXj)
+Join our Discord server for support and updates: [Discord Link](https://discord.gg/R7ybdvBSuM)
 
 A Python tool to spam messages to NGL.link using proxies.
 
