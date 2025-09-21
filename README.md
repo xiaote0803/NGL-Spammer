@@ -2,20 +2,15 @@
 
 ## Support
 
-Join our Discord server for support and updates: [Discord Link](https://discord.gg/R7ybdvBSuM)
+Join our Discord server for support and updates: [Discord Link](https://discord.gg/ZBXepTXj)
 
-A Python tool to spam messages to NGL.link using proxies.
+A Python tool to spam NGL messages with proxy.
 
 ## Features
 
 - Multi-threaded sending with proxy
 - Rate limit bypass
 - User agent rotation
-
-## Requirements
-
-- Python 3.6+
-- `requests` and `urllib3` libraries
 
 ## Installation
 
@@ -40,4 +35,4 @@ python main.py
 
 ## Disclaimer
 
-Use responsibly. Sending unsolicited messages may violate terms of service.
+This project is for educational purposes only. Use at your own risk. Users are responsible for complying with all applicable laws and terms of service.
