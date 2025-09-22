@@ -1,6 +1,6 @@
 # NGL Spammer
 
-A Python tool to spam messages to NGL.link using proxies.
+A Python tool to spam NGL messages with proxies
 
 ## Support
 
@@ -26,12 +26,12 @@ python main.py
 
 ## Configuration
 
-- **`message.txt`**: Contains messages to send, one message per line
-- **`proxy.txt`**: Contains proxy servers in `ip:port` format, one proxy per line  
+- **`message.txt`**: Each line contains one message to send
+- **`proxy.txt`**: Each line contains a proxy in `ip:port` format
 
 ## Proxy Collection
 
-You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to collect fresh proxies for `proxy.txt`.
+You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to fetch proxies for `proxy.txt`
 
 ## Disclaimer
 
