@@ -23,15 +23,15 @@ pip install requests urllib3
 - **`message.txt`**: Contains messages to send, one message per line
 - **`proxy.txt`**: Contains proxy servers in `ip:port` format, one proxy per line  
 
-## Proxy Collection
-
-You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to collect fresh proxies for `proxy.txt`.
-
 ## Usage
 
 ```bash
 python main.py
 ```
+
+## Proxy Collection
+
+You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to collect fresh proxies for `proxy.txt`.
 
 ## Disclaimer
 
