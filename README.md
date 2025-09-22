@@ -12,11 +12,6 @@ Join our Discord server for support and updates: [Discord Link](https://discord.
 - Rate limit bypass
 - User agent rotation
 
-## Requirements
-
-- Python 3.6+
-- `requests` and `urllib3` libraries
-
 ## Installation
 
 ```bash
