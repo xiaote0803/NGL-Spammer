@@ -8,9 +8,11 @@ Join our Discord server for support and updates: [Discord Link](https://discord.
 
 ## Features
 
-- Multi-threaded sending with proxy
-- Rate limit bypass
-- User agent rotation
+- Concurrent multi-threading
+- Rate-limit bypass
+- Proxy-based requests
+- Dynamic device ID
+- Rotating User-Agent
 
 ## Installation
 
@@ -35,4 +37,4 @@ You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-S
 
 ## Disclaimer
 
-Use responsibly. Sending unsolicited messages may violate terms of service.
+This project is for educational purposes only. Use at your own risk. Users are responsible for complying with all applicable laws and terms of service.
