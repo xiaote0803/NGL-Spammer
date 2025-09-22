@@ -18,16 +18,16 @@ Join our Discord server for support and updates: [Discord Link](https://discord.
 pip install requests urllib3
 ```
 
-## Configuration
-
-- **`message.txt`**: Contains messages to send, one message per line
-- **`proxy.txt`**: Contains proxy servers in `ip:port` format, one proxy per line  
-
 ## Usage
 
 ```bash
 python main.py
 ```
+
+## Configuration
+
+- **`message.txt`**: Contains messages to send, one message per line
+- **`proxy.txt`**: Contains proxy servers in `ip:port` format, one proxy per line  
 
 ## Proxy Collection
 
