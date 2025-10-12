@@ -33,7 +33,7 @@ python main.py
 
 ## Proxy Collection
 
-You can use [Proxy-Scraper-And-Checker](https://github.com/iamthebestm85/Proxy-Scraper-And-Checker-) to fetch proxies for `proxy.txt`
+You can use [Proxy-Scraper-And-Checker](https://github.com/xiaote0803/Proxy-Scraper-and-Checker) to fetch proxies for `proxy.txt`
 
 ## Disclaimer
 
