@@ -1,6 +1,6 @@
 # NGL Spammer
 
-A Python tool to spam NGL messages with proxies
+A Python tool to spam NGL.link messages with proxies
 
 ## Support
 
