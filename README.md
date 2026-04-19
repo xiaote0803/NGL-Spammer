@@ -2,6 +2,10 @@
 
 A Python tool to spam [NGL.link](https://ngl.link/) messages with proxies
 
+## Support
+
+Join our Discord server for support and updates: [Discord Link](https://discord.gg/ZA2tcP82fq)
+
 ## Features
 
 - Concurrent multi-threading
